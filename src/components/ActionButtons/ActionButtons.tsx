@@ -45,7 +45,7 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({
   return (
     <div className="p-3 h-full flex flex-col relative">
       {/* Coins Display */}
-      <div className="flex items-center justify-center gap-2 mb-2 p-1 bg-gradient-to-r from-yellow-400/15 to-yellow-300/15 border border-yellow-400/30 rounded-xl shadow-lg shadow-yellow-400/10 backdrop-blur-md">
+      <div className="flex items-center justify-center gap-2 mb-3 p-2.5 bg-gradient-to-r from-yellow-400/15 to-yellow-300/15 border border-yellow-400/30 rounded-xl shadow-lg shadow-yellow-400/10 backdrop-blur-md">
         <span className="text-xl drop-shadow-lg">💰</span>
         <span className="text-lg font-black text-white/95 drop-shadow-sm tracking-tight">
           {coins} coins

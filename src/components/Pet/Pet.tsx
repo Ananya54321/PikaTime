@@ -3,13 +3,12 @@ import type { PetState } from '../../types/Pet';
 
 interface PetProps {
   petState: PetState;
-  onReset: () => void;
 }
 
 /**
  * Pet component - Visual representation of the virtual pet
  */
-export const Pet: React.FC<PetProps> = ({ petState, onReset }) => {
+export const Pet: React.FC<PetProps> = ({ petState }) => {
   // Determine pet mood based on stats
   const getPetMood = (): string => {
     const avgStats = (petState.hunger + petState.happiness + petState.energy) / 3;
@@ -72,15 +71,6 @@ export const Pet: React.FC<PetProps> = ({ petState, onReset }) => {
 
   return (
     <div className={`flex flex-col items-center justify-center p-6 h-full w-full rounded-2xl transition-all duration-300 bg-transparent relative overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/5 before:to-transparent before:rounded-2xl before:pointer-events-none ${getMoodStyles()}`}>
-      {/* Reset Button - Top Right Corner */}
-      <button 
-        className="absolute top-4 right-4 z-20 flex items-center gap-2 py-2 px-3 border-2 border-red-500/50 bg-red-500/10 text-white/90 rounded-xl cursor-pointer font-semibold transition-all duration-300 ease-out backdrop-blur-md text-sm hover:bg-red-500/20 hover:border-red-500/80 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-red-500/20"
-        onClick={onReset}
-        title="Reset pet to default state"
-      >
-        <span className="text-sm">🔄</span>
-        Reset
-      </button>
 
       <div className="flex flex-col items-center mb-4 z-10 relative">
         <span className="text-6xl md:text-7xl mb-3 transition-transform duration-300 cursor-pointer drop-shadow-lg hover:scale-110 hover:rotate-6">
