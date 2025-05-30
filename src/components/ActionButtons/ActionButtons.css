@@ -1,0 +1,296 @@
+/* Bento Grid Action Buttons Styles */
+.action-buttons {
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.coins-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 237, 78, 0.15) 100%);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(255, 215, 0, 0.1);
+  backdrop-filter: blur(12px);
+}
+
+.coins-icon {
+  font-size: 1.5rem;
+  filter: drop-shadow(0 2px 4px rgba(255, 215, 0, 0.5));
+}
+
+.coins-amount {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: -0.01em;
+}
+
+.action-buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  flex: 1;
+}
+
+.action-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0.75rem;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: inherit;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-height: 100px;
+}
+
+.action-button:hover:not(:disabled) {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.action-button:active:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.action-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  filter: grayscale(0.5);
+}
+
+.feed-button {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(248, 113, 113, 0.2) 100%);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.play-button {
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.2) 0%, rgba(59, 130, 246, 0.2) 100%);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.rest-button {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(74, 222, 128, 0.2) 100%);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.button-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.button-text {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+.button-effect {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.utility-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+}
+
+.reset-button {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  border: 2px solid rgba(239, 68, 68, 0.5);
+  background: rgba(239, 68, 68, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(12px);
+  font-family: inherit;
+}
+
+.reset-button:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.8);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(239, 68, 68, 0.2);
+}
+
+.reset-button .button-icon {
+  font-size: 1.2rem;
+  margin: 0;
+  filter: none;
+}
+
+.action-tips {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-top: auto;
+  border-left: 4px solid rgba(102, 126, 234, 0.6);
+  backdrop-filter: blur(12px);
+}
+
+.action-tips p {
+  margin: 0 0 1rem 0;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+}
+
+.action-tips ul {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.action-tips li {
+  margin: 0.75rem 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.action-tips li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: rgba(102, 126, 234, 0.8);
+  font-weight: bold;
+}
+
+.action-tips li strong {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+}
+
+.button-cost {
+  font-size: 0.8rem;
+  opacity: 0.8;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0.375rem 0.75rem;
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .action-buttons {
+    padding: 1.5rem;
+  }
+  
+  .action-buttons-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+  }
+  
+  .action-button {
+    padding: 1.25rem 0.75rem;
+    min-height: 90px;
+  }
+  
+  .button-icon {
+    font-size: 2rem;
+  }
+  
+  .button-text {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .action-buttons-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  .action-button {
+    padding: 1rem;
+    min-height: 80px;
+  }
+  
+  .button-icon {
+    font-size: 1.8rem;
+  }
+  
+  .reset-button {
+    padding: 0.75rem 1.5rem;
+  }
+}
+
+/* Light theme support */
+@media (prefers-color-scheme: light) {
+  .coins-display {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(255, 237, 78, 0.2) 100%);
+    border-color: rgba(255, 215, 0, 0.4);
+  }
+  
+  .coins-amount {
+    color: rgba(33, 37, 41, 0.9);
+  }
+  
+  .action-button {
+    color: rgba(33, 37, 41, 0.9);
+  }
+  
+  .reset-button {
+    background: rgba(239, 68, 68, 0.1);
+    color: rgba(239, 68, 68, 0.9);
+  }
+  
+  .action-tips {
+    background: rgba(0, 0, 0, 0.05);
+  }
+  
+  .action-tips p {
+    color: rgba(33, 37, 41, 0.9);
+  }
+  
+  .action-tips li {
+    color: rgba(33, 37, 41, 0.7);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .action-button,
+  .reset-button {
+    transition: none;
+  }
+  
+  .action-button:hover:not(:disabled),
+  .reset-button:hover {
+    transform: none;
+  }
+}
