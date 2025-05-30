@@ -1,21 +1,12 @@
 import React, { useState } from 'react';
-import type { ProductivityState, WorkSession } from '../../types/Pet';
+import type { ProductivityState } from '../../types/Pet';
 import { COINS_PER_MINUTE, MIN_WORK_SESSION } from '../../types/Pet';
-import './WorkTimer.css';
 
 interface WorkTimerProps {
   productivityState: ProductivityState;
   onStartWork: (description: string) => void;
   onEndWork: () => void;
   onCancelWork: () => void;
-  workStats: {
-    todayWorkTime: number;
-    todayCoins: number;
-    todaySessions: number;
-    totalWorkTime: number;
-    totalCoins: number;
-    totalSessions: number;
-  };
 }
 
 /**
@@ -25,8 +16,7 @@ export const WorkTimer: React.FC<WorkTimerProps> = ({
   productivityState,
   onStartWork,
   onEndWork,
-  onCancelWork,
-  workStats
+  onCancelWork
 }) => {
   const [workDescription, setWorkDescription] = useState('');
 
@@ -61,35 +51,41 @@ export const WorkTimer: React.FC<WorkTimerProps> = ({
   };
 
   return (
-    <div className="work-timer">
-      <div className="timer-header">
-        <h3 className="timer-title">
+    <div className="p-6 h-full flex flex-col relative">
+      <div className="text-center mb-4">
+        <h3 className="m-0 mb-2 text-white/90 text-xl font-bold flex items-center justify-center gap-2 tracking-tight">
           <span>💼</span>
           Work Timer
         </h3>
-        <p className="timer-subtitle">Earn coins by tracking your work sessions</p>
+        <p className="m-0 text-white/70 text-sm font-medium">
+          Earn coins by tracking your work sessions
+        </p>
       </div>
 
       {currentSession ? (
         // Active work session display
         <div>
-          <div className="timer-display">
-            <h2 className="timer-time">{formatTime(currentSession.duration)}</h2>
-            <p className="timer-description">{currentSession.description}</p>
-            <p className="timer-earnings">
+          <div className="text-center my-4 flex-1 flex flex-col justify-center">
+            <h2 className="text-5xl font-black text-white/95 m-0 mb-3 font-mono drop-shadow-lg tracking-tight">
+              {formatTime(currentSession.duration)}
+            </h2>
+            <p className="text-lg text-white/80 font-semibold leading-relaxed">
+              {currentSession.description}
+            </p>
+            <p className="text-base text-green-400/90 my-3 font-semibold flex items-center justify-center gap-2">
               💰 Earned: {getEstimatedEarnings()} coins
               {currentSession.duration < MIN_WORK_SESSION && (
-                <span> (minimum {MIN_WORK_SESSION} minutes required)</span>
+                <span className="text-white/60"> (minimum {MIN_WORK_SESSION} minutes required)</span>
               )}
             </p>
           </div>
 
-          <div className="timer-buttons">
-            <button className="timer-button stop-button" onClick={onEndWork}>
+          <div className="flex gap-3 justify-center flex-wrap">
+            <button className="py-3 px-6 border-none rounded-xl font-bold text-sm cursor-pointer transition-all duration-300 ease-out flex items-center gap-2 font-sans backdrop-blur-md border border-white/10 shadow-lg shadow-black/15 min-w-[120px] justify-center bg-gradient-to-br from-green-500/20 to-green-400/20 text-white/95 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/25 hover:border-white/20 active:-translate-y-px" onClick={onEndWork}>
               <span>⏹️</span>
               Finish Work
             </button>
-            <button className="timer-button cancel-button" onClick={onCancelWork}>
+            <button className="py-3 px-6 border-none rounded-xl font-bold text-sm cursor-pointer transition-all duration-300 ease-out flex items-center gap-2 font-sans backdrop-blur-md border border-white/10 shadow-lg shadow-black/15 min-w-[120px] justify-center bg-gradient-to-br from-gray-600/20 to-gray-500/20 text-white/95 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/25 hover:border-white/20 active:-translate-y-px" onClick={onCancelWork}>
               <span>❌</span>
               Cancel
             </button>
@@ -97,10 +93,10 @@ export const WorkTimer: React.FC<WorkTimerProps> = ({
         </div>
       ) : (
         // Start work session form
-        <div className="timer-form">
+        <div className="flex flex-col gap-4 mb-4">
           <input
             type="text"
-            className="timer-input"
+            className="py-3 px-4 border-2 border-white/20 rounded-lg text-base transition-all duration-300 ease-out font-sans bg-white/5 text-white/90 backdrop-blur-sm placeholder:text-white/50 focus:outline-none focus:border-blue-500/60 focus:shadow-md focus:shadow-blue-500/10 focus:bg-white/8"
             placeholder="What are you working on?"
             value={workDescription}
             onChange={(e) => setWorkDescription(e.target.value)}
@@ -108,9 +104,13 @@ export const WorkTimer: React.FC<WorkTimerProps> = ({
             maxLength={100}
           />
           
-          <div className="timer-buttons">
+          <div className="flex gap-3 justify-center flex-wrap">
             <button 
-              className="timer-button start-button"
+              className={`py-3 px-6 border-none rounded-xl font-bold text-sm cursor-pointer transition-all duration-300 ease-out flex items-center gap-2 font-sans backdrop-blur-md border border-white/10 shadow-lg shadow-black/15 min-w-[120px] justify-center bg-gradient-to-br from-green-500/20 to-green-400/20 text-white/95 ${
+                workDescription.trim() 
+                  ? 'hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/25 hover:border-white/20 active:-translate-y-px' 
+                  : 'opacity-50 cursor-not-allowed'
+              }`}
               onClick={handleStartWork}
               disabled={!workDescription.trim()}
             >
@@ -120,39 +120,6 @@ export const WorkTimer: React.FC<WorkTimerProps> = ({
           </div>
         </div>
       )}
-
-      {/* Work Statistics */}
-      <div className="timer-stats">
-        <div className="stats-grid">
-          <div className="stat-item">
-            <p className="stat-value">{workStats.todayWorkTime}</p>
-            <p className="stat-label">Today (min)</p>
-          </div>
-          <div className="stat-item">
-            <p className="stat-value">{workStats.todayCoins}</p>
-            <p className="stat-label">Today Coins</p>
-          </div>
-          <div className="stat-item">
-            <p className="stat-value">{Math.floor(workStats.totalWorkTime / 60)}</p>
-            <p className="stat-label">Total Hours</p>
-          </div>
-          <div className="stat-item">
-            <p className="stat-value">{productivityState.coins}</p>
-            <p className="stat-label">Total Coins</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Tips */}
-      <div className="timer-tips">
-        <p>Productivity Tips:</p>
-        <ul>
-          <li>Work for at least {MIN_WORK_SESSION} minutes to earn coins</li>
-          <li>Earn {COINS_PER_MINUTE} coins per minute of work</li>
-          <li>Use coins to take care of your pet</li>
-          <li>Track different types of work sessions</li>
-        </ul>
-      </div>
     </div>
   );
 };

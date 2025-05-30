@@ -1,17 +1,9 @@
 import React, { useState } from 'react';
 import type { WorkSession } from '../../types/Pet';
-import './WorkHistory.css';
 
 interface WorkHistoryProps {
   workHistory: WorkSession[];
-  workStats: {
-    todayWorkTime: number;
-    todayCoins: number;
-    todaySessions: number;
-    totalWorkTime: number;
-    totalCoins: number;
-    totalSessions: number;
-  };
+ 
 }
 
 /**
@@ -19,7 +11,6 @@ interface WorkHistoryProps {
  */
 export const WorkHistory: React.FC<WorkHistoryProps> = ({
   workHistory,
-  workStats
 }) => {
   const [showHistory, setShowHistory] = useState(false);
 
@@ -61,68 +52,33 @@ export const WorkHistory: React.FC<WorkHistoryProps> = ({
   };
 
   return (
-    <div className="work-history">
-      <div className="history-header">
-        <span>📊</span>
-        <h3 className="history-title">Work Statistics</h3>
-      </div>
+    <div className="p-5 h-full flex flex-col relative">
+     <p className="text-white/90 text-center text-xl font-bold">Work History</p>
 
-      {/* Summary Statistics */}
-      <div className="history-summary">
-        <div className="summary-stats">
-          <div className="summary-stat">
-            <p className="summary-value">{workStats.todaySessions}</p>
-            <p className="summary-label">Today</p>
-          </div>
-          <div className="summary-stat">
-            <p className="summary-value">{formatDuration(workStats.todayWorkTime)}</p>
-            <p className="summary-label">Today Time</p>
-          </div>
-          <div className="summary-stat">
-            <p className="summary-value">{workStats.totalSessions}</p>
-            <p className="summary-label">Total Sessions</p>
-          </div>
-          <div className="summary-stat">
-            <p className="summary-value">{Math.floor(workStats.totalWorkTime / 60)}h</p>
-            <p className="summary-label">Total Time</p>
-          </div>
-        </div>
-
-        <button 
-          className="toggle-button"
-          onClick={() => setShowHistory(!showHistory)}
-        >
-          {showHistory ? 'Hide History' : 'Show History'}
-        </button>
-      </div>
-
-      {/* Work History List */}
-      {showHistory && (
-        <div className="history-list">
-          {workHistory.length === 0 ? (
-            <div className="history-empty">
-              <p>No work sessions yet!</p>
-              <p>Start your first work session to see it here.</p>
-            </div>
-          ) : (
-            workHistory.map((session) => (
-              <div key={session.id} className="history-item">
-                <div className="session-header">
-                  <p className="session-description">{session.description}</p>
-                  <span className="session-coins">💰 {session.coinsEarned}</span>
-                </div>
-                <div className="session-details">
-                  <span className="session-duration">
-                    <span>⏱️</span>
-                    {formatDuration(session.duration)}
-                  </span>
-                  <span className="session-date">
-                    {formatDate(session.startTime)}
-                  </span>
-                </div>
+      {/* Work History List - Only when toggled and has content */}
+      { workHistory.length > 0 && (
+        <div className=" overflow-y-auto border border-white/10 rounded-xl bg-white/[0.02] backdrop-blur-sm flex-1 mt-3 scrollbar-thin scrollbar-track-white/5 scrollbar-thumb-white/20 scrollbar-thumb-rounded hover:scrollbar-thumb-white/30">
+          {workHistory.map((session) => (
+            <div key={session.id} className="p-4 border-b border-white/8 transition-all duration-300 ease-out last:border-b-0 hover:bg-white/5 hover:backdrop-blur-md">
+              <div className="flex justify-between items-start mb-3 flex-col sm:flex-row sm:gap-4">
+                <p className="font-bold text-white/90 text-lg m-0 flex-1 mr-4 leading-tight sm:mr-0 sm:mb-0 mb-3">
+                  {session.description}
+                </p>
+                <span className="bg-gradient-to-br from-green-500/30 to-green-400/30 text-white/90 py-1.5 px-3 rounded-xl text-sm font-bold whitespace-nowrap border border-green-400/40 backdrop-blur-sm">
+                  💰 {session.coinsEarned}
+                </span>
               </div>
-            ))
-          )}
+              <div className="flex justify-between items-center text-sm text-white/70">
+                <span className="flex items-center gap-2 font-semibold">
+                  <span>⏱️</span>
+                  {formatDuration(session.duration)}
+                </span>
+                <span className="text-xs font-medium">
+                  {formatDate(session.startTime)}
+                </span>
+              </div>
+            </div>
+          ))}
         </div>
       )}
     </div>

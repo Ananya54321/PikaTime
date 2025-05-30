@@ -1,7 +1,6 @@
 import React from 'react';
 import type { PetState } from '../../types/Pet';
 import { ACTION_COSTS } from '../../types/Pet';
-import './ActionButtons.css';
 
 interface ActionButtonsProps {
   petState: PetState;
@@ -9,7 +8,6 @@ interface ActionButtonsProps {
   onFeed: () => void;
   onPlay: () => void;
   onRest: () => void;
-  onReset: () => void;
 }
 
 /**
@@ -20,8 +18,7 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({
   coins,
   onFeed,
   onPlay,
-  onRest,
-  onReset
+  onRest
 }) => {
   // Determine if action is disabled based on pet state or coins
   const isPlayDisabled = petState.energy < 10 || coins < ACTION_COSTS.play;
@@ -46,71 +43,72 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({
   };
 
   return (
-    <div className="action-buttons">
+    <div className="p-3 h-full flex flex-col relative">
       {/* Coins Display */}
-      <div className="coins-display">
-        <span className="coins-icon">💰</span>
-        <span className="coins-amount">{coins} coins</span>
+      <div className="flex items-center justify-center gap-2 mb-2 p-1 bg-gradient-to-r from-yellow-400/15 to-yellow-300/15 border border-yellow-400/30 rounded-xl shadow-lg shadow-yellow-400/10 backdrop-blur-md">
+        <span className="text-xl drop-shadow-lg">💰</span>
+        <span className="text-lg font-black text-white/95 drop-shadow-sm tracking-tight">
+          {coins} coins
+        </span>
       </div>
 
-      <div className="action-buttons-grid">
+      <div className="grid grid-cols-3 gap-3 flex-1">
         <button 
-          className="action-button feed-button"
+          className={`flex flex-col items-center justify-center p-2 border-none rounded-2xl cursor-pointer transition-all duration-300 ease-out font-sans shadow-lg shadow-black/15 relative overflow-hidden backdrop-blur-md border border-white/10 min-h-[80px] bg-gradient-to-br from-red-500/20 to-red-400/20 text-white/90 ${
+            isFeedDisabled 
+              ? 'opacity-40 cursor-not-allowed grayscale' 
+              : 'hover:-translate-y-1 hover:shadow-xl hover:shadow-black/25 hover:border-white/20 active:-translate-y-0.5 active:shadow-lg active:shadow-black/20'
+          }`}
           onClick={onFeed}
           disabled={isFeedDisabled}
           title={isFeedDisabled ? getDisabledReason('feed') : `Feed your pet (${ACTION_COSTS.feed} coins)`}
         >
-          <span className="button-icon">🍎</span>
-          <span className="button-text">Feed</span>
-          <span className="button-effect">+20 Hunger</span>
-          <span className="button-cost">{ACTION_COSTS.feed} 💰</span>
+          <span className="text-3xl mb-1 drop-shadow-md">🍎</span>
+          <span className="font-bold text-base mb-1 tracking-tight">Feed</span>
+          <span className="text-xs opacity-70 font-medium text-center leading-tight">+20 Hunger</span>
+          <span className="text-xs opacity-80 font-semibold mt-1 bg-black/20 py-1 px-2 rounded-lg backdrop-blur-sm">
+            {ACTION_COSTS.feed} 💰
+          </span>
         </button>
 
         <button 
-          className="action-button play-button"
+          className={`flex flex-col items-center justify-center p-3 border-none rounded-2xl cursor-pointer transition-all duration-300 ease-out font-sans shadow-lg shadow-black/15 relative overflow-hidden backdrop-blur-md border border-white/10 min-h-[80px] bg-gradient-to-br from-blue-500/20 to-blue-400/20 text-white/90 ${
+            isPlayDisabled 
+              ? 'opacity-40 cursor-not-allowed grayscale' 
+              : 'hover:-translate-y-1 hover:shadow-xl hover:shadow-black/25 hover:border-white/20 active:-translate-y-0.5 active:shadow-lg active:shadow-black/20'
+          }`}
           onClick={onPlay}
           disabled={isPlayDisabled}
           title={isPlayDisabled ? getDisabledReason('play') : `Play with your pet (${ACTION_COSTS.play} coins)`}
         >
-          <span className="button-icon">🎾</span>
-          <span className="button-text">Play</span>
-          <span className="button-effect">+15 Happiness</span>
-          <span className="button-cost">{ACTION_COSTS.play} 💰</span>
+          <span className="text-3xl mb-2 drop-shadow-md">🎾</span>
+          <span className="font-bold text-base mb-1 tracking-tight">Play</span>
+          <span className="text-xs opacity-70 font-medium text-center leading-tight">+15 Happiness</span>
+          <span className="text-xs opacity-80 font-semibold mt-1 bg-black/20 py-1 px-2 rounded-lg backdrop-blur-sm">
+            {ACTION_COSTS.play} 💰
+          </span>
         </button>
 
-        <button 
-          className="action-button rest-button"
-          onClick={onRest}
-          disabled={isRestDisabled}
-          title={isRestDisabled ? getDisabledReason('rest') : `Let your pet rest (${ACTION_COSTS.rest} coins)`}
-        >
-          <span className="button-icon">💤</span>
-          <span className="button-text">Rest</span>
-          <span className="button-effect">+25 Energy</span>
-          <span className="button-cost">{ACTION_COSTS.rest} 💰</span>
-        </button>
-      </div>
-
-      <div className="utility-buttons">
-        <button 
-          className="reset-button"
-          onClick={onReset}
-          title="Reset pet to default state"
-        >
-          <span className="button-icon">🔄</span>
-          Reset Pet
-        </button>
-      </div>
-
-      <div className="action-tips">
-        <p><strong>💡 How to earn coins:</strong></p>
-        <ul>
-          <li>🍎 <strong>Feed</strong> costs {ACTION_COSTS.feed} coins - increases hunger but makes your pet sleepy</li>
-          <li>🎾 <strong>Play</strong> costs {ACTION_COSTS.play} coins - boosts happiness but uses energy and hunger</li>
-          <li>💤 <strong>Rest</strong> costs {ACTION_COSTS.rest} coins - restores energy but decreases hunger slightly</li>
-          <li>💼 <strong>Work sessions</strong> earn you coins to care for your pet!</li>
-          <li>📉 Stats naturally decrease over time - check on your pet regularly!</li>
-        </ul>
+        {/* Rest button - centered in second row */}
+        <div className=" flex justify-center">
+          <button 
+            className={`flex flex-col items-center justify-center p-3 border-none rounded-2xl cursor-pointer transition-all duration-300 ease-out font-sans shadow-lg shadow-black/15 relative overflow-hidden backdrop-blur-md border border-white/10 min-h-[80px] bg-gradient-to-br from-green-500/20 to-green-400/20 text-white/90 w-full max-w-[180px] ${
+              isRestDisabled 
+                ? 'opacity-40 cursor-not-allowed grayscale' 
+                : 'hover:-translate-y-1 hover:shadow-xl hover:shadow-black/25 hover:border-white/20 active:-translate-y-0.5 active:shadow-lg active:shadow-black/20'
+            }`}
+            onClick={onRest}
+            disabled={isRestDisabled}
+            title={isRestDisabled ? getDisabledReason('rest') : `Let your pet rest (${ACTION_COSTS.rest} coins)`}
+          >
+            <span className="text-3xl mb-2 drop-shadow-md">💤</span>
+            <span className="font-bold text-base mb-1 tracking-tight">Rest</span>
+            <span className="text-xs opacity-70 font-medium text-center leading-tight">+25 Energy</span>
+            <span className="text-xs opacity-80 font-semibold mt-1 bg-black/20 py-1 px-2 rounded-lg backdrop-blur-sm">
+              {ACTION_COSTS.rest} 💰
+            </span>
+          </button>
+        </div>
       </div>
     </div>
   );
