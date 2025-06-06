@@ -39,10 +39,10 @@ function App() {
         </button>
         
         <h1 className="text-4xl font-black bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent mb-2 tracking-tight">
-          🐾 Virtual Pet
+          🐾 PikaTime!
         </h1>
         <p className="text-lg text-white/80 font-normal">
-          Take care of your digital companion by being productive!
+          Take care of your pikachu by being productive!
         </p>
         
         {/* Help Button */}
