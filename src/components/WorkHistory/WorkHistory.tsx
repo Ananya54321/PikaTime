@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import type { WorkSession } from '../../types/Pet';
 
 interface WorkHistoryProps {
@@ -12,7 +11,6 @@ interface WorkHistoryProps {
 export const WorkHistory: React.FC<WorkHistoryProps> = ({
   workHistory,
 }) => {
-  const [showHistory, setShowHistory] = useState(false);
 
   // Format date display
   const formatDate = (timestamp: number): string => {
