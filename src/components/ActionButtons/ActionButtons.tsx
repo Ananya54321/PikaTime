@@ -66,7 +66,7 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({
           <span className="text-3xl mb-1 drop-shadow-md">🍎</span>
           <span className="font-bold text-base mb-1 tracking-tight">Feed</span>
           <span className="text-xs opacity-70 font-medium text-center leading-tight">+20 Hunger<br/> +5 Happiness<br/>-2 Energy</span>
-          <span className="text-xs opacity-80 font-semibold mt-1 bg-black/20 py-1 px-2 rounded-lg backdrop-blur-sm">
+          <span className="text-xs opacity-80 font-semibold mt-1 bg-black/20 py-1 px-2 rounded-lg backdrop-blur-sm"><br />
             {ACTION_COSTS.feed} 💰
           </span>
         </button>
@@ -84,7 +84,7 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({
           <span className="text-3xl mb-2 drop-shadow-md">🎾</span>
           <span className="font-bold text-base mb-1 tracking-tight">Play</span>
           <span className="text-xs opacity-70 font-medium text-center leading-tight">+15 Happiness<br/>-10 Hunger<br/>-15 Energy</span>
-          <span className="text-xs opacity-80 font-semibold mt-1 bg-black/20 py-1 px-2 rounded-lg backdrop-blur-sm">
+          <span className="text-xs opacity-80 font-semibold mt-1 bg-black/20 py-1 px-2 rounded-lg backdrop-blur-sm"><br />
             {ACTION_COSTS.play} 💰
           </span>
         </button>
@@ -104,7 +104,7 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({
             <span className="text-3xl mb-2 drop-shadow-md">💤</span>
             <span className="font-bold text-base mb-1 tracking-tight">Rest</span>
             <span className="text-xs opacity-70 font-medium text-center leading-tight">+25 Energy<br/> +5 Happiness<br/>-5 Hunger</span>
-            <span className="text-xs opacity-80 font-semibold mt-1 bg-black/20 py-1 px-2 rounded-lg backdrop-blur-sm">
+            <span className="text-xs opacity-80 font-semibold mt-1 bg-black/20 py-1 px-2 rounded-lg backdrop-blur-sm"><br />
               {ACTION_COSTS.rest} 💰
             </span>
           </button>
