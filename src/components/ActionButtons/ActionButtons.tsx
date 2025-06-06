@@ -64,9 +64,10 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({
           title={isFeedDisabled ? getDisabledReason('feed') : `Feed your pet (${ACTION_COSTS.feed} coins)`}
         >
           <span className="text-3xl mb-1 drop-shadow-md">🍎</span>
-          <span className="font-bold text-base mb-1 tracking-tight">Feed</span>
+          <span className="font-bold text-lg mb-1 tracking-tight">Feed</span>
           <span className="text-xs opacity-70 font-medium text-center leading-tight">+20 Hunger<br/> +5 Happiness<br/>-2 Energy</span>
-          <span className="text-xs opacity-80 font-semibold mt-1 bg-black/20 py-1 px-2 rounded-lg backdrop-blur-sm"><br />
+          <br />
+          <span className="text-base opacity-90 font-semibold mt-1 bg-black/20 py-1 px-2 rounded-lg backdrop-blur-sm">
             {ACTION_COSTS.feed} 💰
           </span>
         </button>
@@ -82,9 +83,10 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({
           title={isPlayDisabled ? getDisabledReason('play') : `Play with your pet (${ACTION_COSTS.play} coins)`}
         >
           <span className="text-3xl mb-2 drop-shadow-md">🎾</span>
-          <span className="font-bold text-base mb-1 tracking-tight">Play</span>
+          <span className="font-bold text-lg mb-1 tracking-tight">Play</span>
           <span className="text-xs opacity-70 font-medium text-center leading-tight">+15 Happiness<br/>-10 Hunger<br/>-15 Energy</span>
-          <span className="text-xs opacity-80 font-semibold mt-1 bg-black/20 py-1 px-2 rounded-lg backdrop-blur-sm"><br />
+          <br />
+          <span className="text-base opacity-90 font-semibold mt-1 bg-black/20 py-1 px-2 rounded-lg backdrop-blur-sm">
             {ACTION_COSTS.play} 💰
           </span>
         </button>
@@ -102,9 +104,10 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({
             title={isRestDisabled ? getDisabledReason('rest') : `Let your pet rest (${ACTION_COSTS.rest} coins)`}
           >
             <span className="text-3xl mb-2 drop-shadow-md">💤</span>
-            <span className="font-bold text-base mb-1 tracking-tight">Rest</span>
+            <span className="font-bold text-lg mb-1 tracking-tight">Rest</span>
             <span className="text-xs opacity-70 font-medium text-center leading-tight">+25 Energy<br/> +5 Happiness<br/>-5 Hunger</span>
-            <span className="text-xs opacity-80 font-semibold mt-1 bg-black/20 py-1 px-2 rounded-lg backdrop-blur-sm"><br />
+            <br />
+            <span className="text-base opacity-90 font-semibold mt-1 bg-black/20 py-1 px-2 rounded-lg backdrop-blur-sm">
               {ACTION_COSTS.rest} 💰
             </span>
           </button>
